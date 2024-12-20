@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data.sort((a, b) => b.id - a.id);
             data.forEach(customer => {
                 const row = document.createElement('tr');
-                row.setAttribute('data-id', customer.id); // Set data-id attribute
+                row.setAttribute('data-id', customer.id);
                 row.innerHTML = `
                     <td>${customer.id}</td>
                     <td>${customer.full_name}</td>
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Added customer:', customer);
             const customerTableBody = document.getElementById('customer-table-body');
             const row = document.createElement('tr');
-            row.setAttribute('data-id', customer.id); // Set data-id attribute
+            row.setAttribute('data-id', customer.id);
             row.innerHTML = `
                 <td>${customer.id}</td>
                 <td>${customer.full_name}</td>
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Added contact:', contact);
             const contactTableBody = document.getElementById('contact-table-body');
             const row = document.createElement('tr');
-            row.setAttribute('data-id', contact.id); // Set data-id attribute
+            row.setAttribute('data-id', contact.id);
             row.innerHTML = `
                 <td>${contact.id}</td>
                 <td>${contact.name}</td>
@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <button class="btn btn-danger btn-sm" onclick="deleteContact(${contact.id})">Delete</button>
                 </td>
             `;
-            contactTableBody.prepend(row); // Add new contact to the top
+            contactTableBody.prepend(row);
             $('#addContactModal').modal('hide');
         })
         .catch(error => console.error('Error adding contact:', error));
