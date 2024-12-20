@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column vh-100">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">The Hotels</a>
+    </nav>
+    <div class="d-flex flex-grow-1">
+        <div class="bg-primary text-white p-3 d-flex flex-column" style="width: 15%;">
+            <a href="#customer" class="text-white d-block py-2" onclick="showSection('customer')">Customer</a>
+            <a href="#contact" class="text-white d-block py-2" onclick="showSection('contact')">Contact</a>
+        </div>
+        <div class="flex-grow-1 p-3">
+            <div id="customer-section">
+                <h2>Customer</h2>
+                <button class="btn btn-success mb-3" data-toggle="modal" data-target="#addCustomerModal">Add Customer</button>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>CheckIn Date</th>
+                            <th>CheckOut Date</th>
+                            <th>Room Type</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customer-table-body">
+                        <!-- Customer data will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="contact-section" style="display: none;">
+                <h2>Contact</h2>
+                <button class="btn btn-success mb-3" data-toggle="modal" data-target="#addContactModal">Add Contact</button>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Message</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contact-table-body">
+                        <!-- Contact data will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Customer Modal -->
+    <div class="modal fade" id="addCustomerModal" tabindex="-1" aria-labelledby="addCustomerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCustomerModalLabel">Add Customer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addCustomerForm">
+                        <div class="form-group">
+                            <label for="customerName">Name</label>
+                            <input type="text" class="form-control" id="customerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerEmail">Email</label>
+                            <input type="email" class="form-control" id="customerEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerPhone">Phone</label>
+                            <input type="text" class="form-control" id="customerPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerCheckIn">CheckIn Date</label>
+                            <input type="date" class="form-control" id="customerCheckIn" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerCheckOut">CheckOut Date</label>
+                            <input type="date" class="form-control" id="customerCheckOut" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerRoomType">Room Type</label>
+                            <input type="text" class="form-control" id="customerRoomType" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Customer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Customer Modal -->
+    <div class="modal fade" id="editCustomerModal" tabindex="-1" aria-labelledby="editCustomerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCustomerModalLabel">Edit Customer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCustomerForm">
+                        <input type="hidden" id="editCustomerId">
+                        <div class="form-group">
+                            <label for="editCustomerName">Name</label>
+                            <input type="text" class="form-control" id="editCustomerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editCustomerEmail">Email</label>
+                            <input type="email" class="form-control" id="editCustomerEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editCustomerPhone">Phone</label>
+                            <input type="text" class="form-control" id="editCustomerPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editCustomerCheckIn">CheckIn Date</label>
+                            <input type="date" class="form-control" id="editCustomerCheckIn" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editCustomerCheckOut">CheckOut Date</label>
+                            <input type="date" class="form-control" id="editCustomerCheckOut" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editCustomerRoomType">Room Type</label>
+                            <input type="text" class="form-control" id="editCustomerRoomType" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Contact Modal -->
+    <div class="modal fade" id="addContactModal" tabindex="-1" aria-labelledby="addContactModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addContactModalLabel">Add Contact</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addContactForm">
+                        <div class="form-group">
+                            <label for="contactName">Name</label>
+                            <input type="text" class="form-control" id="contactName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email</label>
+                            <input type="email" class="form-control" id="contactEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea class="form-control" id="contactMessage" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Contact</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Contact Modal -->
+    <div class="modal fade" id="editContactModal" tabindex="-1" aria-labelledby="editContactModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editContactModalLabel">Edit Contact</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editContactForm">
+                        <input type="hidden" id="editContactId">
+                        <div class="form-group">
+                            <label for="editContactName">Name</label>
+                            <input type="text" class="form-control" id="editContactName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editContactEmail">Email</label>
+                            <input type="email" class="form-control" id="editContactEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editContactMessage">Message</label>
+                            <textarea class="form-control" id="editContactMessage" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        function showSection(sectionId) {
+            document.getElementById('customer-section').style.display = 'none';
+            document.getElementById('contact-section').style.display = 'none';
+            document.getElementById(sectionId + '-section').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
